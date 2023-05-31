@@ -15,6 +15,7 @@ $database->closeConnection();
     <title>New Sales Form</title>
 </head>
 <body>
+<a href="../index.php">Home</a> <br>
     <h2>New Sales Form</h2>
     <form method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>">
         <label for="klantId">Klanten_klantId:</label>

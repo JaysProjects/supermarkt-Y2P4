@@ -15,6 +15,7 @@ $database->closeConnection();
     <title>New Client Form</title>
 </head>
 <body>
+<a href="../index.php">Home</a><br>
 <h2>New Client Form</h2>
 <form method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>">
     <label for="name">Name:</label>

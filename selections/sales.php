@@ -1,3 +1,4 @@
+<a href="../index.php">Home</a><br>
 <?php
 include_once "../class/db_config.php";
 include_once "../class/DatabaseConnection.php";
