@@ -60,6 +60,6 @@ class SalesHandler
             echo "Error: " . $e->getMessage();
         }
 
-        return  $sales;
+        return null;
     }
 }
