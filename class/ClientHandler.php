@@ -1,6 +1,6 @@
 <?php
 
-class ClientFormHandler{
+class ClientHandler{
 
     private $pdo;
 
