@@ -10,7 +10,7 @@ class SalesHandler
 
 
 
-    public function handleFormSubmission() {
+    public function handleCreateOrder() {
         // Check if the form is submitted
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             // Retrieve form data

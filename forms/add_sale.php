@@ -9,7 +9,7 @@ $salesFormHandler = new SalesHandler($database->getConnection());
 $klanten = new ClientHandler($database->getConnection());
 $productHandler = new ProductHandler($database->getConnection());
 
-$salesFormHandler->handleFormSubmission();
+$salesFormHandler->handleCreateOrder();
 
 $database->closeConnection();
 ?>
