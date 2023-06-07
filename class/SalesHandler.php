@@ -17,7 +17,8 @@ class SalesHandler
             $klantId = $_POST['klantId'];
             $artId = $_POST['artId'];
             $verOrdBestAantal = $_POST['verOrdBestAantal'];
-            $verOrdStatus = $_POST['verOrdStatus'];
+//            $verOrdStatus = $_POST['verOrdStatus'];
+            $verOrdStatus = 1;
             $verOrdDatum = date("Y-m-d"); // Current date
 
             try {

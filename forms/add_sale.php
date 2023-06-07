@@ -47,8 +47,8 @@ $database->closeConnection();
         <label for="verOrdBestAantal">verOrdBestAantal:</label>
         <input type="text" id="verOrdBestAantal" name="verOrdBestAantal" required><br><br>
 
-        <label for="verOrdStatus">verOrdStatus:</label>
-        <input type="text" id="verOrdStatus" name="verOrdStatus" required><br><br>
+<!--        <label for="verOrdStatus" hidden>verOrdStatus:</label>-->
+<!--        <input type="text" id="verOrdStatus" name="verOrdStatus" value="1" readonly hidden><br><br>-->
 
         <input type="submit" value="Submit">
     </form>
