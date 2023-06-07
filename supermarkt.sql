@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Gegenereerd op: 31 mei 2023 om 17:31
+-- Gegenereerd op: 07 jun 2023 om 20:00
 -- Serverversie: 8.0.28
 -- PHP-versie: 8.1.2
 
@@ -44,15 +44,15 @@ CREATE TABLE `artikelen` (
 --
 
 INSERT INTO `artikelen` (`artId`, `levId`, `artOmschrijving`, `artInkoop`, `artVerkoop`, `artVoorraad`, `artMinVoorraad`, `artMaxVoorraad`, `artLocatie`) VALUES
-(1, NULL, 'appel', NULL, NULL, 200, 100, 1000, NULL);
+(1, 1, 'appel', NULL, NULL, 200, 100, 1000, NULL);
 
 -- --------------------------------------------------------
 
 --
--- Tabelstructuur voor tabel `inkoop orders`
+-- Tabelstructuur voor tabel `inkooporders`
 --
 
-CREATE TABLE `inkoop orders` (
+CREATE TABLE `inkooporders` (
   `inkOrdId` int NOT NULL,
   `Artikelen_artId` int NOT NULL,
   `Leveranciers_levId` int NOT NULL,
@@ -60,6 +60,14 @@ CREATE TABLE `inkoop orders` (
   `inkOrdBestAantal` int DEFAULT NULL,
   `inkOrdStatus` tinyint DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+
+--
+-- Gegevens worden geëxporteerd voor tabel `inkooporders`
+--
+
+INSERT INTO `inkooporders` (`inkOrdId`, `Artikelen_artId`, `Leveranciers_levId`, `inkOrdDatum`, `inkOrdBestAantal`, `inkOrdStatus`) VALUES
+(1, 1, 1, '2023-06-07', 10, 1),
+(2, 1, 1, '2023-06-07', 10, 1);
 
 -- --------------------------------------------------------
 
@@ -84,7 +92,9 @@ INSERT INTO `klanten` (`klantId`, `klantNaam`, `klantEmail`, `klantAdres`, `klan
 (1, 'Jahden', 'test@live.nl', 'test 24', '1234ZA', 'Rotterdam'),
 (2, 'test', 'teste@live.nl', 'test', '2348dc', 'RTortder'),
 (3, 'test', 'teste@live.nl', 'test', '2348dc', 'RTortder'),
-(4, 'Hallo', 'Halleo@hotmail.com', 'Stuitenweg', '2043ZS', 'Hoofddorp');
+(4, 'Hallo', 'Halleo@hotmail.com', 'Stuitenweg', '2043ZS', 'Hoofddorp'),
+(5, 'Kayra', 'kayra@live.nl', 'kayrahuuis', '2334WE', 'Tilburg'),
+(6, 'Hendrick', 'Hendrick@gmail.com', 'Waddenweg 1', '2134WA', 'Scheveningen');
 
 -- --------------------------------------------------------
 
@@ -95,13 +105,19 @@ INSERT INTO `klanten` (`klantId`, `klantNaam`, `klantEmail`, `klantAdres`, `klan
 CREATE TABLE `leveranciers` (
   `levId` int NOT NULL,
   `levNaam` varchar(15) NOT NULL,
-  `levContact` varchar(20) DEFAULT NULL,
+  `levContact` varchar(30) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
   `levEmail` varchar(30) NOT NULL,
   `levAdres` varchar(30) DEFAULT NULL,
   `levPostcode` varchar(6) DEFAULT NULL,
-  `levWoonplaats` varchar(25) DEFAULT NULL,
-  `Leverancierscol` varchar(45) DEFAULT NULL
+  `levWoonplaats` varchar(25) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+
+--
+-- Gegevens worden geëxporteerd voor tabel `leveranciers`
+--
+
+INSERT INTO `leveranciers` (`levId`, `levNaam`, `levContact`, `levEmail`, `levAdres`, `levPostcode`, `levWoonplaats`) VALUES
+(1, 'Pink Lady', 'Grégoire Van den Ostende', 'info@breaking-news.be', 'Louizalaan 367', '1050BE', 'Brussels');
 
 -- --------------------------------------------------------
 
@@ -123,7 +139,12 @@ CREATE TABLE `verkooporders` (
 --
 
 INSERT INTO `verkooporders` (`verOrdId`, `Klanten_klantId`, `Artikelen_artId`, `verOrdDatum`, `verOrdBestAantal`, `verOrdStatus`) VALUES
-(3, 3, 1, '2023-05-31', 10, 1);
+(3, 3, 1, '2023-05-31', 10, 1),
+(5, 2, 1, '2023-06-07', 2, 3),
+(7, 3, 1, '2023-06-07', 11, 1),
+(8, 1, 1, '2023-06-07', 12, 1),
+(9, 1, 1, '2023-06-07', 12, 1),
+(10, 6, 1, '2023-06-07', 123, 1);
 
 --
 -- Indexen voor geëxporteerde tabellen
@@ -138,9 +159,9 @@ ALTER TABLE `artikelen`
   ADD KEY `levId_idx` (`levId`);
 
 --
--- Indexen voor tabel `inkoop orders`
+-- Indexen voor tabel `inkooporders`
 --
-ALTER TABLE `inkoop orders`
+ALTER TABLE `inkooporders`
   ADD PRIMARY KEY (`inkOrdId`,`Artikelen_artId`,`Leveranciers_levId`),
   ADD UNIQUE KEY `inkOrdId_UNIQUE` (`inkOrdId`),
   ADD KEY `fk_Inkoop Orders_Leveranciers1_idx` (`Leveranciers_levId`),
@@ -165,8 +186,6 @@ ALTER TABLE `leveranciers`
 ALTER TABLE `verkooporders`
   ADD PRIMARY KEY (`verOrdId`,`Klanten_klantId`,`Artikelen_artId`),
   ADD UNIQUE KEY `verOrdId_UNIQUE` (`verOrdId`),
-  ADD UNIQUE KEY `Klanten_klantId_UNIQUE` (`Klanten_klantId`),
-  ADD UNIQUE KEY `Artikelen_artId_UNIQUE` (`Artikelen_artId`),
   ADD KEY `fk_Verkooporders_Artikelen_idx` (`Artikelen_artId`),
   ADD KEY `fk_Verkooporders_Klanten1_idx` (`Klanten_klantId`);
 
@@ -181,28 +200,28 @@ ALTER TABLE `artikelen`
   MODIFY `artId` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT voor een tabel `inkoop orders`
+-- AUTO_INCREMENT voor een tabel `inkooporders`
 --
-ALTER TABLE `inkoop orders`
-  MODIFY `inkOrdId` int NOT NULL AUTO_INCREMENT;
+ALTER TABLE `inkooporders`
+  MODIFY `inkOrdId` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT voor een tabel `klanten`
 --
 ALTER TABLE `klanten`
-  MODIFY `klantId` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `klantId` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT voor een tabel `leveranciers`
 --
 ALTER TABLE `leveranciers`
-  MODIFY `levId` int NOT NULL AUTO_INCREMENT;
+  MODIFY `levId` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT voor een tabel `verkooporders`
 --
 ALTER TABLE `verkooporders`
-  MODIFY `verOrdId` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `verOrdId` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- Beperkingen voor geëxporteerde tabellen
@@ -215,9 +234,9 @@ ALTER TABLE `artikelen`
   ADD CONSTRAINT `levId` FOREIGN KEY (`levId`) REFERENCES `leveranciers` (`levId`);
 
 --
--- Beperkingen voor tabel `inkoop orders`
+-- Beperkingen voor tabel `inkooporders`
 --
-ALTER TABLE `inkoop orders`
+ALTER TABLE `inkooporders`
   ADD CONSTRAINT `fk_Inkoop Orders_Artikelen1` FOREIGN KEY (`Artikelen_artId`) REFERENCES `artikelen` (`artId`),
   ADD CONSTRAINT `fk_Inkoop Orders_Leveranciers1` FOREIGN KEY (`Leveranciers_levId`) REFERENCES `leveranciers` (`levId`);
 
