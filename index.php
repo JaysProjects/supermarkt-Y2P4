@@ -14,6 +14,11 @@ include_once "class/DatabaseConnection.php";
     <br>
     <a href="forms/add_sale.php">Add Sale</a>
     <br>
+    <a href="forms/add_inkOrder.php">Add Products</a>
+    <br>
     <a href="selections/sales.php">Show Orders</a>
+    <br>
+    <a href="selections/artikelen.php">Show products</a>
+
 </body>
 </html>
