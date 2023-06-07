@@ -1,9 +1,9 @@
 <?php
 include_once "../class/db_config.php";
 include_once "../class/DatabaseConnection.php";
-include_once "../class/ClientFormHandler.php";
+include_once "../class/ClientHandler.php";
 
-$clientHandler = new ClientFormHandler($database->getConnection());
+$clientHandler = new ClientHandler($database->getConnection());
 $clientHandler->handleFormSubmission();
 
 $database->closeConnection();
