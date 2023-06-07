@@ -62,4 +62,11 @@ class SalesHandler
 
         return null;
     }
+
+    public function getSalesOrdersByKlantId($klantId) {
+        $stmt = $this->pdo->prepare("SELECT * FROM verkooporders WHERE verkooporders.Klanten_klantId IN (SELECT klantId FROM klanten WHERE klantId = :klantId)");
+        $stmt->bindParam(':klantId', $klantId);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
 }
