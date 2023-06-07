@@ -41,4 +41,12 @@ class ClientHandler{
             }
         }
     }
+
+    public function getKlanten() {
+        $stmt = $this->pdo->query("SELECT * FROM klanten");
+
+        echo "successfully fetched all clients: <br> ";
+
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
 }
