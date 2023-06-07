@@ -42,8 +42,6 @@ class SalesHandler
                 echo "Error: " . $e->getMessage();
             }
         }
-
-
     }
 
     public function getSalesData() {
