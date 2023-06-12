@@ -29,8 +29,7 @@ $productHandler = new ProductHandler($database->getConnection());
             ?>
         </select><br><br>
         <!-- JavaScript function to get the supplier ID -->
-        <script src="../assets/api/js/artid.js">
-        </script>
+        <script src="../assets/api/js/getIdentification.js"></script>
 
         <label for="levId">Supplier ID:</label>
         <input type="text" name="levId" id="levId" required readonly><br><br>
