@@ -49,4 +49,15 @@ class ClientHandler{
 
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
+
+    public function getKlantById($klantId) {
+
+        $query = "SELECT * FROM Klanten WHERE klantId = :klantId";
+        $stmt = $this->pdo->prepare($query);
+        $stmt->bindParam(':klantId', $klantId);
+        $stmt->execute();
+        $klant = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        return $klant;
+    }
 }

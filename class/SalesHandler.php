@@ -8,8 +8,6 @@ class SalesHandler
         $this->pdo = $pdo;
     }
 
-
-
     public function handleCreateOrder() {
         // Check if the form is submitted
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -51,7 +49,7 @@ class SalesHandler
             // Fetch all rows as an associative array
             $sales = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-            echo "successfully fetched all orders: <br> ";
+//            echo "successfully fetched all orders: <br> ";
 
             return $sales;
         } catch (PDOException $e) {
@@ -68,4 +66,24 @@ class SalesHandler
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
+
+    public function deleteOrder($verOrdId) {
+        try {
+            // Prepare the SQL statement for deleting the order by verOrdId
+            $sql = 'DELETE FROM verkooporders WHERE verOrdId = :verOrdId';
+
+            // Prepare the statement
+            $stmt = $this->pdo->prepare($sql);
+
+            // Bind the parameter
+            $stmt->bindParam(':verOrdId', $verOrdId);
+
+            // Execute the statement
+            $stmt->execute();
+        } catch (PDOException $e) {
+            // Handle any errors that occur during the deletion
+            echo "Error: " . $e->getMessage();
+        }
+    }
+
 }
