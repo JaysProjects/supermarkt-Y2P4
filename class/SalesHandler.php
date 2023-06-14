@@ -86,4 +86,42 @@ class SalesHandler
         }
     }
 
+    public function updateOrder($verOrdId, $newStatus, $newAmount, $newArtId) {
+        try {
+            $sql = 'UPDATE verkooporders SET verOrdStatus = :verOrdStatus, verOrdBestAantal = :verOrdBestAantal, Artikelen_artId = :artId WHERE verOrdId = :verOrdId';
+
+            $stmt = $this->pdo->prepare($sql);
+
+            $stmt->bindParam(':verOrdStatus', $newStatus);
+            $stmt->bindParam(':verOrdBestAantal', $newAmount);
+            $stmt->bindParam(':artId', $newArtId);
+            $stmt->bindParam(':verOrdId', $verOrdId);
+
+            $stmt->execute();
+        } catch (PDOException $e) {
+            echo "Error: " . $e->getMessage();
+        }
+    }
+
+    public function getOrderById($verOrdId) {
+        try {
+            $sql = 'SELECT * FROM verkooporders WHERE verOrdId = :verOrdId';
+
+            $stmt = $this->pdo->prepare($sql);
+
+            $stmt->bindParam(':verOrdId', $verOrdId);
+
+            $stmt->execute();
+
+            $order = $stmt->fetch(PDO::FETCH_ASSOC);
+
+            $artId = $order['Artikelen_artId'];
+            $verOrdStatus = $order['verOrdStatus'];
+            $verOrdBestAantal = $order['verOrdBestAantal'];
+
+            return $order;
+        } catch (PDOException $e) {
+            echo "Error: " . $e->getMessage();
+        }
+    }
 }
