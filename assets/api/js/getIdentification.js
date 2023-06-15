@@ -25,4 +25,15 @@ function deleteOrder(verOrdId) {
     xhr.open('GET', '../assets/api/php/delete_order.php?verOrdId=' + verOrdId, true);
     xhr.send();
     }
+function deleteSupplier(levId) {
+    if (confirm("Are you sure you want to delete this Supplier?")) {
+        const xhr = new XMLHttpRequest();
+        xhr.onreadystatechange = function() {
+            if (xhr.readyState === 4 && xhr.status === 200) {
+                location.reload();
+            }
+        };
+    xhr.open('GET', '../assets/api/php/delete_supplier.php?levId=' + levId, true);
+    xhr.send();
+    }
 }
