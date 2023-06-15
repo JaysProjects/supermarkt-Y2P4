@@ -18,18 +18,21 @@ $database->closeConnection();
 <html>
 <head>
     <title>New Sales Form</title>
+    <link href="../assets/css/addSale.css" rel="stylesheet" type="text/css">
 </head>
 <body>
-<a href="../index.php">Home</a> <br>
+<div class="container">
+    <a href="../index.php">Home</a> <br>
     <h2>New Sales Form</h2>
     <form method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>">
         <label for="klantId">Klanten_klantId:</label>
         <select name="klantId" id="klantId" required>
             <option value="" disabled selected>Choose here</option>
             <?php
-            $klantenList = $klanten->getKlanten();
+            $klantenList = $klanten->getClientsData();
             foreach ($klantenList as $klant) {
-                echo '<option value="' . $klant['klantId'] . '">' . $klant['klantId'] . ' - ' . $klant['klantNaam'] . '</option>';        }
+                echo '<option value="' . $klant['klantId'] . '">' . $klant['klantId'] . ' - ' . $klant['klantNaam'] . '</option>';
+            }
             ?>
         </select><br><br>
 
@@ -39,20 +42,16 @@ $database->closeConnection();
             <?php
             $productList = $productHandler->getProducts();
             foreach ($productList as $product) {
-                echo '<option value="' . $product['artId'] . '">' . $product['artId'] . '</option>';
+                echo '<option value="' . $product['artId'] . '">' . $product['artOmschrijving'] . '</option>';
             }
             ?>
         </select><br><br>
 
-        <label for="verOrdBestAantal">verOrdBestAantal:</label>
+        <label for="verOrdBestAantal">Bestel Aantal: </label>
         <input type="text" id="verOrdBestAantal" name="verOrdBestAantal" required><br><br>
-
-<!--        <label for="verOrdStatus" hidden>verOrdStatus:</label>-->
-<!--        <input type="text" id="verOrdStatus" name="verOrdStatus" value="1" readonly hidden><br><br>-->
 
         <input type="submit" value="Submit">
     </form>
+</div>
 </body>
 </html>
-
-

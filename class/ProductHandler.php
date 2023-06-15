@@ -76,4 +76,19 @@ class ProductHandler
             echo "Error: " . $e->getMessage();
         }
     }
+
+    public function deleteProduct($artId) {
+        try {
+            $sql = 'DELETE FROM artikelen WHERE artId = :artId';
+
+            $stmt = $this->pdo->prepare($sql);
+
+            $stmt->bindParam(':artId', $artId);
+
+            $stmt->execute();
+        } catch (PDOException $e) {
+            // Handle any errors that occur during the deletion
+            echo "Error: " . $e->getMessage();
+        }
+    }
 }
