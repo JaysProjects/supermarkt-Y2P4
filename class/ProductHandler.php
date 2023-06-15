@@ -25,6 +25,43 @@ class ProductHandler
         }
     }
 
+    public function getInkoopOrders()
+    {
+        try {
+            // Prepare the SQL statement
+            $stmt = $this->pdo->query('SELECT * FROM inkooporders');
+
+            // Fetch all rows as an associative array
+            $inkooporders = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+            return $inkooporders;
+        } catch (PDOException $e) {
+            // Handle any errors that occur during the query
+            echo "Error: " . $e->getMessage();
+        }
+    }
+
+    public function deleteInkOrder($inkOrdId) {
+        try {
+            // Prepare the SQL statement for deleting the order by verOrdId
+            $sql = 'DELETE FROM inkooporders WHERE inkOrdId = :inkOrdId';
+
+            // Prepare the statement
+            $stmt = $this->pdo->prepare($sql);
+
+            // Bind the parameter
+            $stmt->bindParam(':inkOrdId', $inkOrdId);
+
+            // Execute the statement
+            $stmt->execute();
+
+            return "test";
+        } catch (PDOException $e) {
+            // Handle any errors that occur during the deletion
+            echo "Error: " . $e->getMessage();
+        }
+    }
+
     public function getProductSupplier($artId)
     {
         try {
