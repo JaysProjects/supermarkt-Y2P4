@@ -53,4 +53,15 @@ function deleteSupplier(levId) {
     xhr.open('GET', '../assets/api/php/delete_supplier.php?levId=' + levId, true);
     xhr.send();
     }
+function deleteClientAndOrders(klantId) {
+    if (confirm("Are you sure you want to delete this Client and their Orders?")) {
+        const xhr = new XMLHttpRequest();
+        xhr.onreadystatechange = function() {
+            if (xhr.readyState === 4 && xhr.status === 200) {
+                location.reload();
+            }
+        };
+        xhr.open('GET', '../assets/api/php/delete_client.php?klantId=' + klantId, true);
+        xhr.send();
+    }
 }
