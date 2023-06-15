@@ -9,14 +9,6 @@ $salesQueryHandler = new SalesHandler($database->getConnection());
 $productQueryHandler = new ProductHandler($database->getConnection());
 $klanten = new ClientHandler($database->getConnection());
 
-if (isset($_GET['verOrdId'])) {
-    $orderId = $_GET['verOrdId'];
-
-    echo "success";
-    // Call the deleteOrder() method to delete the order by Order ID
-    $salesQueryHandler->deleteOrder($orderId);
-}
-
 $database->closeConnection();
 ?>
 
@@ -26,13 +18,13 @@ $database->closeConnection();
     <title>Sales Overview</title>
     <link rel="stylesheet" type="text/css" href="../assets/css/overview.css">
     <script src="../assets/js/clear.js"></script>
-    <script type="text/javascript" src="../assets/js/updateOrder.js.php"></script>
     <script type="text/javascript" src="../assets/api/js/getIdentification.js"></script>
 </head>
 <body>
+<a href="../index.php" class="home-link">Home</a><br>
 <div class="container">
-    <a href="../index.php" class="home-link">Home</a><br>
 
+    <h2>Bestelling overzicht</h2>
     <?php
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $selectedKlantId = isset($_POST['klant']) ? $_POST['klant'] : '';
@@ -91,7 +83,7 @@ $database->closeConnection();
             <select name="klant" id="klant" onchange="this.form.submit()">
                 <option value="" disabled selected>Choose here</option>
                 <?php
-                $klantenList = $klanten->getKlanten();
+                $klantenList = $klanten->getClientsData();
                 foreach ($klantenList as $klant) {
                     echo '<option value="' . $klant['klantId'] . '">' . $klant['klantId'] . ' - ' . $klant['klantNaam'] . '</option>';
                 }

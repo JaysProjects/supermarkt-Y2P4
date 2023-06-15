@@ -15,6 +15,11 @@ function openUpdateModal(verOrdId) {
     updateForm.method = 'POST';
     updateForm.action = '../update/update_order.php';
 
+    var titleForm = document.createElement('p');
+    titleForm.textContent = 'Update Order';
+    titleForm.style = 'font-size: 20px; font-weight: bold; margin-bottom: 0';
+    updateForm.appendChild(titleForm);
+
     var closeButton = document.createElement('span');
     closeButton.textContent = 'X';
     closeButton.className = 'close-button';
@@ -27,6 +32,14 @@ function openUpdateModal(verOrdId) {
     document.body.appendChild(modalOverlay);
 
     // Create the form elements and populate with existing values
+    var orderIdLabel = document.createElement('label');
+    orderIdLabel.textContent = 'Editing Order: ' + verOrdId;
+    orderIdLabel.style = 'font-size: 10px; top: -20';
+    updateForm.appendChild(orderIdLabel);
+
+    updateForm.appendChild(document.createElement('br'));
+    updateForm.appendChild(document.createElement('br'));
+
     var verOrdIdInput = document.createElement('input');
     verOrdIdInput.type = 'hidden';
     verOrdIdInput.name = 'verOrdId';
