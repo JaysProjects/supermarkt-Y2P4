@@ -10,9 +10,7 @@ class ClientHandler{
     }
 
     public function handleFormSubmission() {
-        // Check if the form is submitted
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            // Retrieve form data
             $name = $_POST['klantNaam'];
             $email = $_POST['klantEmail'];
             $adres = $_POST['klantAdres'];
@@ -20,23 +18,18 @@ class ClientHandler{
             $woonplaats = $_POST['klantWoonplaats'];
 
             try {
-                // Prepare the SQL statement for insertion
                 $stmt = $this->pdo->prepare("INSERT INTO klanten (klantNaam, klantEmail, klantAdres, klantPostcode, klantWoonplaats) VALUES (:klantNaam, :klantEmail, :klantAdres, :klantPostcode, :klantWoonplaats)");
 
-                // Bind the parameters
                 $stmt->bindParam(':klantNaam', $name);
                 $stmt->bindParam(':klantEmail', $email);
                 $stmt->bindParam(':klantAdres', $adres);
                 $stmt->bindParam(':klantPostcode', $postcode);
                 $stmt->bindParam(':klantWoonplaats', $woonplaats);
 
-                // Execute the statement
                 $stmt->execute();
 
-                // Provide feedback to the user
                 echo "Client inserted successfully!";
             } catch (PDOException $e) {
-                // Handle any errors that occur during the insertion
                 echo "Error: " . $e->getMessage();
             }
         }
@@ -46,13 +39,11 @@ class ClientHandler{
         try {
             $stmt = $this->pdo->query("SELECT * FROM klanten");
 
-//        echo "successfully fetched all clients: <br> ";
 
             $client = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
             return $client;
         } catch (PDOException $e) {
-            // Handle any errors that occur during the query
             echo "Error: " . $e->getMessage();
         }
         return null;
@@ -104,30 +95,24 @@ class ClientHandler{
         $deleteClientStmt->bindValue(':klantId', $klantId, PDO::PARAM_INT);
         $deleteClientResult = $deleteClientStmt->execute();
 
-        // Return true if both delete operations were successful, false otherwise
         return $deleteClientResult && $deleteOrdersResult;
     }
 
     public function getClientsDataByFirstLetterOfId($searchValue) {
-        // Prepare the SQL query to fetch clients filtered by the first letter or number of the ID
         $sql = 'SELECT * FROM klanten WHERE klantId LIKE :searchValue';
-//        echo "<script>console.log(" . $sql . ")></script>";
         $stmt = $this->pdo->prepare($sql);
         $stmt->bindValue(':searchValue', $searchValue . '%');
         $stmt->execute();
 
-        // Fetch and return the filtered clients as an array
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
     public function getClientsDataByFirstLetterOfName($searchValue) {
-        // Prepare the SQL query to fetch clients filtered by the first letter or number of the name
         $sql = 'SELECT * FROM klanten WHERE klantNaam LIKE :searchValue';
         $stmt = $this->pdo->prepare($sql);
         $stmt->bindValue(':searchValue', $searchValue . '%');
         $stmt->execute();
 
-        // Fetch and return the filtered clients as an array
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 }

@@ -16,12 +16,10 @@ $database->closeConnection();
     <link rel="stylesheet" type="text/css" href="../assets/css/overview.css">
     <script type="text/javascript" src="../assets/api/js/getIdentification.js"></script>
 </head>
-
-
 <body>
 <a href="../index.php" class="home-link">Home</a><br>
 <div class="container">
-    <h2>Supplier overzicht</h2>
+    <h2>Supplier overview</h2>
     <?php
     echo '<table class="order-table">';
     echo '<tr>';
@@ -45,7 +43,6 @@ $database->closeConnection();
         echo '<td>' . $supplier['levPostcode'] . '</td>';
         echo '<td>' . $supplier['levWoonplaats'] . '</td>';
         echo '<td>';
-//        echo '<button class="button button-update" onclick="openUpdateModal(' . $supplier['levId'] . ')">Update</button>';
         echo '<button class="button button-delete" onclick="deleteSupplier(' . $supplier['levId'] . ')">Delete</button>';
         echo '</td>';
         echo '</tr>';
@@ -55,14 +52,8 @@ $database->closeConnection();
 
     <script type="text/javascript">
         function openUpdateModal(supplierId) {
-            // Add your code to open the update modal for the given supplier ID
             console.log("Update modal opened for supplier ID: " + supplierId);
         }
-
-        // function deleteSupplier(supplierId) {
-        //     // Add your code to delete the supplier with the given supplier ID
-        //     console.log("Supplier deleted with ID: " + supplierId);
-        // }
     </script>
 </div>
 </body>

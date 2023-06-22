@@ -102,53 +102,21 @@ $database->closeConnection();
 
 
     </script>
-    <style>
-        #search-input {
-            width: 300px;
-            padding: 5px;
-            font-size: 16px;
-        }
-
-        #search-results {
-            position: absolute;
-            width: 300px;
-            max-height: 200px;
-            overflow-y: auto;
-            border: 1px solid #ccc;
-            background-color: #fff;
-            display: none;
-        }
-
-        #search-results .result-item {
-            padding: 5px;
-            cursor: pointer;
-        }
-
-        #search-results .result-item:hover {
-            background-color: #f5f5f5;
-        }
-
-    </style>
 </head>
 <body>
 <a href="../index.php" class="home-link">Home</a><br>
 <div class="container">
-    <h2>Klanten Overzicht</h2>
-
+    <div class="header">
+        <h2>Client overview</h2>
+        <a href="../forms/add_client.php" class="button button-add">Add Client</a>
+    </div>
     <div class="search-container">
         <select id="search-option">
             <option value="id">ID</option>
             <option value="name">Name</option>
         </select>
-
         <input type="text" id="search-input" onkeyup="searchClients()">
-
-<!--        <input type="text" id="search-input" placeholder="Search by ID or Name" onkeyup="searchClients()">-->
         <div id="search-results"></div>
-
-        <!--        <label for="search-input">Search:</label>-->
-<!--        <input type="text" id="search-input" placeholder="Enter klantId or klantName">-->
-<!--        <button onclick="searchClients()">Search</button>-->
     </div>
     <table id="client-table" class="order-table">
         <thead>

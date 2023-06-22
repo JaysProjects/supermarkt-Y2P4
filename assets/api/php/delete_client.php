@@ -6,10 +6,8 @@ include_once ($_SERVER['DOCUMENT_ROOT'] . '/class/ClientHandler.php');
 
 $clientQueryHandler = new ClientHandler($database->getConnection());
 
-
 $klantId = $_GET['klantId'];
 echo $klantId;
-
 
 $result = $clientQueryHandler->deleteClientAndOrders($klantId);
 

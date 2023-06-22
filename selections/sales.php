@@ -40,10 +40,10 @@ $database->closeConnection();
     echo '<table class="order-table">';
     echo '<tr>';
     echo '<th>Order ID</th>';
-    echo '<th>Klant ID</th>';
-    echo '<th>Artikel ID</th>';
+    echo '<th>Client ID</th>';
+    echo '<th>Product ID</th>';
     echo '<th>Order Datum</th>';
-    echo '<th>Bestel Aantal</th>';
+    echo '<th>Order Aantal</th>';
     echo '<th>Order Status</th>';
     echo '<th>Actions</th>';
     echo '</tr>';
@@ -64,13 +64,12 @@ $database->closeConnection();
     }
     echo '</table>';
 
-    include_once "../assets/js/updateOrder.js.php";
+    include "../assets/js/updateOrder.js.php";
     ?>
 
     <div class="current-klant">
         <?php
         if (!empty($selectedKlantId)) {
-            // Retrieve and display the details of the selected klant
             $selectedKlant = $klanten->getKlantById($selectedKlantId);
             echo "<b>Selected Klant</b> <br><br> KlantId:" . $selectedKlant['klantId'] . "<br> Klant Naam:" . $selectedKlant['klantNaam'];
             echo '<br><button onclick="clearSelectedKlant()" style="">Clear</button><br><hr>';
@@ -79,7 +78,7 @@ $database->closeConnection();
 
         <br>
         <form method="POST" action="">
-            <label for="klant">Select a Klant:</label>
+            <label for="klant">Select a client:</label>
             <select name="klant" id="klant" onchange="this.form.submit()">
                 <option value="" disabled selected>Choose here</option>
                 <?php

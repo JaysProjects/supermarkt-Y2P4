@@ -16,14 +16,10 @@ class DatabaseConnection {
 
     public function connect() {
         try {
-            // Establish the PDO connection
             $this->pdo = new PDO("mysql:host=$this->host;dbname=$this->dbname", $this->user, $this->password);
 
-            // Set PDO error mode to exception
             $this->pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-//            echo "success";
         } catch (PDOException $e) {
-            // Handle any errors that occur during the PDO connection
             echo "Connection failed: " . $e->getMessage();
         }
     }

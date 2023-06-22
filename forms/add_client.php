@@ -13,9 +13,10 @@ $database->closeConnection();
 <html>
 <head>
     <title>New Client Form</title>
+    <link href="../assets/css/addproduct.css" rel="stylesheet" type="text/css">
 </head>
 <body>
-<a href="../index.php">Home</a><br>
+<div class="container">
 <h2>New Client Form</h2>
 <form method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>">
     <label for="name">Name:</label>
@@ -34,6 +35,9 @@ $database->closeConnection();
     <input type="text" id="klantWoonplaats" name="klantWoonplaats" required><br><br>
 
     <input type="submit" value="Submit">
+    <a href="../selections/client.php" class="back-button">Back</a>
+
 </form>
+</div>
 </body>
 </html>

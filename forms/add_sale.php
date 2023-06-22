@@ -18,14 +18,13 @@ $database->closeConnection();
 <html>
 <head>
     <title>New Sales Form</title>
-    <link href="../assets/css/addSale.css" rel="stylesheet" type="text/css">
+    <link href="../assets/css/addproduct.css" rel="stylesheet" type="text/css">
 </head>
 <body>
 <div class="container">
-    <a href="../index.php">Home</a> <br>
-    <h2>New Sales Form</h2>
+    <h2>New order</h2>
     <form method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>">
-        <label for="klantId">Klanten_klantId:</label>
+        <label for="klantId">Client:</label>
         <select name="klantId" id="klantId" required>
             <option value="" disabled selected>Choose here</option>
             <?php
@@ -36,7 +35,7 @@ $database->closeConnection();
             ?>
         </select><br><br>
 
-        <label for="artId">Artikelen_artId:</label>
+        <label for="artId">Product:</label>
         <select name="artId" id="artId" required>
             <option value="" disabled selected>Choose here</option>
             <?php
@@ -47,10 +46,11 @@ $database->closeConnection();
             ?>
         </select><br><br>
 
-        <label for="verOrdBestAantal">Bestel Aantal: </label>
+        <label for="verOrdBestAantal">Order amount: </label>
         <input type="text" id="verOrdBestAantal" name="verOrdBestAantal" required><br><br>
 
         <input type="submit" value="Submit">
+        <a href="../selections/sales.php" class="back-button">Back</a>
     </form>
 </div>
 </body>

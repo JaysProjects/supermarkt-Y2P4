@@ -1,7 +1,5 @@
 function getSupplierId(artId) {
     const levIdField = document.getElementById('levId');
-
-    // Make an AJAX request to retrieve the supplier ID for the selected product
     const xhr = new XMLHttpRequest();
     xhr.onreadystatechange = function() {
     if (xhr.readyState === 4 && xhr.status === 200) {
@@ -14,7 +12,6 @@ function getSupplierId(artId) {
 
 function deleteOrder(verOrdId) {
     if (confirm("Are you sure you want to delete this order?")) {
-    // Make an AJAX request to delete the order
         const xhr = new XMLHttpRequest();
         xhr.onreadystatechange = function() {
             if (xhr.readyState === 4 && xhr.status === 200) {
@@ -29,7 +26,6 @@ function deleteOrder(verOrdId) {
 
 function deleteProduct(artId) {
     if (confirm("Are you sure you want to delete this product?")) {
-    // Make an AJAX request to delete the order
         const xhr = new XMLHttpRequest();
         xhr.onreadystatechange = function() {
             if (xhr.readyState === 4 && xhr.status === 200) {

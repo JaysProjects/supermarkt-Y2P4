@@ -12,33 +12,36 @@ $productHandler = new ProductHandler($database->getConnection());
     <html>
     <head>
         <title>Create Purchase Order</title>
+        <link href="../assets/css/addproduct.css" rel="stylesheet" type="text/css">
     </head>
     <body>
-    <h2>Create Purchase Order</h2>
-    <a href="../index.php">Home</a><br>
-    <form method="POST" action="">
-        <label for="artId">Product:</label>
-        <select name="artId" id="artId" required onchange="getSupplierId(this.value)">
-            <option value="" disabled selected>Choose here</option>
+    <div class="container">
+        <h2>Create Purchase Order</h2>
+        <form method="POST" action="">
+            <label for="artId">Product:</label>
+            <select name="artId" id="artId" required onchange="getSupplierId(this.value)">
+                <option value="" disabled selected>Choose here</option>
 
-            <?php
-            $productList = $productHandler->getProducts();
-            foreach ($productList as $product) {
-                echo '<option value="' . $product['artId'] . '">' . $product['artOmschrijving'] . '</option>';
-            }
-            ?>
-        </select><br><br>
-        <!-- JavaScript function to get the supplier ID -->
-        <script src="../assets/api/js/getIdentification.js"></script>
+                <?php
+                $productList = $productHandler->getProducts();
+                foreach ($productList as $product) {
+                    echo '<option value="' . $product['artId'] . '">' . $product['artOmschrijving'] . '</option>';
+                }
+                ?>
+            </select><br><br>
+            <script src="../assets/api/js/getIdentification.js"></script>
 
-        <label for="levId">Supplier ID:</label>
-        <input type="text" name="levId" id="levId" required readonly><br><br>
+            <label for="levId">Supplier ID:</label>
+            <input type="text" name="levId" id="levId" required readonly><br><br>
 
-        <label for="amount">Order Amount:</label>
-        <input type="number" name="amount" id="amount" required><br><br>
+            <label for="amount">Order Amount:</label>
+            <input type="number" name="amount" id="amount" required><br><br>
 
-        <input type="submit" name="submit" value="Create Purchase Order">
-    </form>
+            <input type="submit" name="submit" value="Create Purchase Order">
+            <a href="../selections/artikelen.php" class="back-button">Back</a>
+        </form>
+
+    </div>
     </body>
     </html>
 

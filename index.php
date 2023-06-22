@@ -1,24 +1,16 @@
-<?php
-include_once "class/db_config.php";
-include_once "class/DatabaseConnection.php";
-
-?>
-
 <!DOCTYPE html>
 <html>
 <head>
-    <title>New Client Form</title>
+    <title>Menu</title>
+    <link href="assets/css/index.css" rel="stylesheet" type="text/css">
 </head>
 <body>
-    <a href="forms/add_client.php">Add client</a>
-    <br>
-    <a href="forms/add_sale.php">Add Sale</a>
-    <br>
-    <a href="forms/add_inkOrder.php">Add Products</a>
-    <br>
+<div class="menu">
     <a href="selections/sales.php">Show Orders</a>
-    <br>
     <a href="selections/artikelen.php">Show products</a>
-
+    <a href="selections/leveranciers.php">Show Suppliers</a>
+    <a href="selections/client.php">Show Clients</a>
+    <a href="selections/restockProducts.php">Show Restock order</a>
+</div>
 </body>
 </html>

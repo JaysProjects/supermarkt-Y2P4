@@ -15,8 +15,6 @@ if ($searchOption === "id") {
 } elseif ($searchOption === "name") {
     $filteredClients = $clientQueryHandler->getClientsDataByFirstLetterOfName($searchValue);
 }
-
-// Return the filtered clients as JSON
 echo json_encode($filteredClients);
 
 $database->closeConnection();

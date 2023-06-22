@@ -19,16 +19,19 @@ $database->closeConnection();
 <body>
 <a href="../index.php" class="home-link">Home</a><br>
 <div class="container">
-    <h2>Artikelen overzicht</h2>
+    <div class="header">
+        <h2>Product overview</h2>
+        <a href="../forms/add_inkOrder.php" class="button button-add">Add Product</a>
+    </div>
     <?php
     echo '<table class="order-table">';
     echo '<tr>';
-    echo '<th>Art ID</th>';
-    echo '<th>Lev ID</th>';
-    echo '<th>Omschrijving</th>';
-    echo '<th>Voorraad</th>';
-    echo '<th>Min Voorraad</th>';
-    echo '<th>Max Voorraad</th>';
+    echo '<th>Product ID</th>';
+    echo '<th>Supplier ID</th>';
+    echo '<th>Desctription</th>';
+    echo '<th>Stock</th>';
+    echo '<th>Min Stock</th>';
+    echo '<th>Max Stock</th>';
     echo '<th>Actions</th>';
     echo '</tr>';
 
@@ -41,7 +44,6 @@ $database->closeConnection();
         echo '<td>' . $product['artMinVoorraad'] . '</td>';
         echo '<td>' . $product['artMaxVoorraad'] . '</td>';
         echo '<td>';
-//        echo '<button class="button button-update" onclick="openUpdateModal(' . $product['artId'] . ')">Update</button>';
         echo '<button class="button button-delete" onclick="deleteProduct(' . $product['artId'] . ')">Delete</button>';
         echo '</td>';
         echo '</tr>';
